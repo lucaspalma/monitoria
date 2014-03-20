@@ -1,6 +1,7 @@
 package br.usp.ime.monitoria.monitoria.controller;
 
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.usp.ime.monitoria.monitoria.modelo.professor.Professor;
@@ -19,7 +20,7 @@ public class HomeController {
 		System.out.println("hello world");
 	}
 
-	@Get("/cadastraProfessor")
+	@Post("/cadastraProfessor")
 	public void cadastraProfessor(Professor professor) {
 		//valida o professor
 		//salva no banco

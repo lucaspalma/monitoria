@@ -1,6 +1,6 @@
 <html>
 <body>
-	<form action="/cadastraProfessor">
+	<form action="/cadastraProfessor" method="post">
 		NUSP: <input type="text" name="professor.numeroUsp"><br/>
 		Nome: <input type="text" name="professor.nome"><br/>
 		Senha: <input type="text" name="professor.senha"><br/>
