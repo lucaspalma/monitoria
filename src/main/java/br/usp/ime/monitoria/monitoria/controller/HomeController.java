@@ -5,8 +5,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.usp.ime.monitoria.monitoria.modelo.professor.Professor;
-import br.usp.ime.monitoria.monitoria.modelo.professor.ProfessorDao;
+import br.usp.ime.monitoria.monitoria.dao.ProfessorDao;
+import br.usp.ime.monitoria.monitoria.modelo.Professor;
 
 @Resource
 public class HomeController {

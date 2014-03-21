@@ -1,10 +1,9 @@
-package br.usp.ime.monitoria.monitoria.modelo.professor;
+package br.usp.ime.monitoria.monitoria.dao;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-
 import br.com.caelum.vraptor.ioc.Component;
+import br.usp.ime.monitoria.monitoria.modelo.Professor;
 
 @Component
 public class ProfessorDao {

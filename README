@@ -123,13 +123,12 @@ vraptor-console. Basta dar o comando run novamente.
 	No caso do postgre, para criar um banco e usuario basta seguir o tutorial no site:
  		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
 
--> Projeto (provisório) Monitoria
+-> Projeto exemplo da Monitoria
 
-	Provisoriamente o projeto se encontra no repositório: 
+	Provisoriamente, existe um exemplo do projeto no repositório: 
 		https://github.com/lucaspalma/monitoria
 	Para rodar o código basta clonar o projeto na sua máquina. 
-	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a 
-passo deste tutorial:
+	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a passo deste tutorial:
 		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
 	obs 1: O nome do usuario, senha e nome do banco devem ser os mesmos que você colocou no persistence.xml
 	obs 2: No "Step # 2: Becoming a superuser", se você não souber sua senha postgres, basta dar o comando:
@@ -137,6 +136,21 @@ passo deste tutorial:
 	     Assim pode usar sua senha de usuário para logar como postgres.
 	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
 		localhost:8080
+
+-> Organização do exemplo monitoria
+
+	O projeto de exemplo tem como principais diretorios o:
+		- src/main/java/br/usp/ime/monitoria/monitoria: onde estão os arquivos .java, organizados em diretorios controller, dao e modelo. O controller e modelo fazem parte do padrão MVC, enquanto o dao são as classes que se comunicam com o banco.
+		- src/main/webapp/WEB-INF/jsp: onde estão as views do padrão MVC.
+	A comunicação entre as jsp's e as classes controller ocorrer a partir do nome do diretorio no src/main/webapp/WEB-INF/jsp e o nome do controller. Todos os métodos no controller, após o término de sua execução, redirecionam para uma jsp com o mesmo nome do método.
+	No nosso exemplo, temos o diretório home em src/main/webapp/WEB-INF/jsp que contém a home.jsp e cadastraProfessor.jsp. Na classe HomeController no src/main/java/br/usp/ime/monitoria/monitoria/controller temos os métodos home() e cadastraProfessor(). Assim após a execução do home() o usuário será redirecionado para a home.jsp. O mesmo ocorre com o cadastraProfessor() e o cadastraProfessor.jsp.
+
+
+->Annotations importantes do vraptor/hibernate
+
+	O Vraptor fornece algumas annotations importantes para dizer o que é cada classe java no padrão MVC.
+	As classes controller precisam ter a annotation @Resource, como pode ser visto na HomeController. Já as classes modelo devem ser marcadas com @Entity.
+	Já as classes dao podem ser marcadas com o @Component, que garantem a injeção de dependências dessas classes. Assim podemos simplesmente receber objetos dessas classes nos construtores dos controllers que o vraptor se encarrega de criar o objeto e passar pro construtor.
 
 -> Links úteis
 

@@ -1,4 +1,4 @@
-package br.usp.ime.monitoria.monitoria.modelo.professor;
+package br.usp.ime.monitoria.monitoria.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
