@@ -1,10 +1,23 @@
 -> Instalando o vraptor-console
 
-	1) Barxar o tar.gz no link http://code.google.com/p/vraptor-console/downloads/list
-	2) Extrai o arquivo para algum diretorio na sua máquina, por exemplo: 
+	1) Barxar o vraptor-console-0.7.0-SNAPSHOT.tar.gz no link: 
+		http://code.google.com/p/vraptor-console/downloads/list
+	2) Extraia o arquivo para algum diretório na sua máquina, por exemplo: 
 		$ tar xzf vraptor-console-0.7.0-SNAPSHOT.tar.gz -C ~/programs
-	3) Coloque no seu .bashrc o comando: export PATH=$PATH:~/programs/vraptor-console/
-	4) Para ver se deu tudo certo tente rodar o comando: vraptor-console
+	3) Coloque no final do seu arquivo seu .bashrc o comando: 
+		export PATH=$PATH:~/programs/vraptor-console/
+	obs: Para abrir o .bashrc basta abrir em algum editor, como por exemplo:
+		$ gedit ~/.bashrc &
+	4) No terminal execute o comando:
+		$ bash
+	5) Para ver se deu tudo certo tente rodar o comando:
+		$ vraptor-console
+
+-> Instalando o maven
+	
+	Para instalar o maven em sua máquina rode os comandos:
+		$ sudo apt-get install maven
+		$ sudo apt-get install maven2
 
 -> Criando um projeto com vraptor-console
 
@@ -12,17 +25,14 @@
 
 -> Importando o projeto no eclipse
 
-	1) Primeiramente será necessário instalar o maven na máquina. Para isso execute os comandos: 
-		$ sudo apt-get install maven
-		$ sudo apt-get install maven2
-	2) Vá para diretório do seu projeto e rode o comando:
+	1) Vá para diretório do seu projeto e rode o comando:
 		$ mvn eclipse:eclipse
-	3) Abra o seu eclipse. Teremos que instalar um plugin maven no eclipse. No eclipse vá em:
+	2) Abra o seu eclipse. Teremos que instalar um plugin maven no eclipse. No eclipse vá em:
 		Help > Eclipse Marketplace...
 	   E busque pelo m2e-apt. Instale o plugin.
-	4) Importe o projeto em seu eclipse. Para isso vá em:
+	3) Importe o projeto em seu eclipse. Para isso vá em:
 		File > Import... > Existing Projects into Workspace
-	5) Passe o diretório do seu projeto.
+	4) Passe o diretório do seu projeto.
 
 -> Rodando o projeto localmente
 
@@ -54,6 +64,60 @@ execute os comandos:
 	4) Se você acessar o link: 
 		<nome da aplicacao no heroku>.heroku.com
 	você acessará sua aplicação no servidor.
+
+-> Configurando o Hibernate
+
+	Para configurar o hibernate no seu projeto, primeiramente teremos que colocar libs no maven.
+	1) No seu eclipse abra o arquivo pom.xml. Depois das linhas:
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.0.Final</version>
+		</dependency>
+	Coloqueas as seguintes linhas:
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.0.Final</version>
+ 		</dependency>
+ 		<dependency>
+	     		<groupId>postgresql</groupId>
+	     		<artifactId>postgresql</artifactId>
+	     		<version>9.1-901-1.jdbc4</version>
+ 		</dependency>
+ 		<dependency>
+	     		<groupId>br.com.caelum.vraptor</groupId>
+	     		<artifactId>vraptor-jpa</artifactId>
+	     		<version>1.0.1</version>
+		</dependency>
+	2) No pacote src/main/resources crie um folder chamado META-INF. Neste folder, crie um 
+arquivo xml chamado persistence.xml, em que faremos as configurações do banco de dados que será 
+usado. Por exemplo, se usarmos um banco de dados postgresql podemos colocar as seguites linhas:
+		<?xml version="1.0" encoding="UTF-8"?>
+		<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+			http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+			version="2.0">
+			<persistence-unit name="default">
+				<properties>
+					<property name="javax.persistence.jdbc.driver" 
+					  value="org.postgresql.Driver" />
+					<property name="javax.persistence.jdbc.url" 
+					  value="jdbc:postgresql://localhost/<nomde do banco>"/>
+					<property name="javax.persistence.jdbc.user" 
+					  value="<nome do usuario>" />
+					<property name="javax.persistence.jdbc.password" 
+					  value="<senha do usuario>"/>
+		
+					<property name="hibernate.dialect" 
+						value="org.hibernate.dialect.PostgreSQLDialect"/>
+					<property name="hibernate.show_sql" value="false" />
+					<property name="hibernate.format_sql" value="true" />
+					<property name="hibernate.hbm2ddl.auto" value="update" />
+				</properties>
+			</persistence-unit>
+		</persistence>
 
 -> Projeto (provisório) Monitoria
 
