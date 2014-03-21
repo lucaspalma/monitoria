@@ -1,0 +1,79 @@
+-> Instalando o vraptor-console
+
+	1) Barxar o tar.gz no link http://code.google.com/p/vraptor-console/downloads/list
+	2) Extrai o arquivo para algum diretorio na sua máquina, por exemplo: 
+		$ tar xzf vraptor-console-0.7.0-SNAPSHOT.tar.gz -C ~/programs
+	3) Coloque no seu .bashrc o comando: export PATH=$PATH:~/programs/vraptor-console/
+	4) Para ver se deu tudo certo tente rodar o comando: vraptor-console
+
+-> Criando um projeto com vraptor-console
+
+	Para criar o seu projeto rode o comando: vraptor-console new com.mycompany.package appname
+
+-> Importando o projeto no eclipse
+
+	1) Primeiramente será necessário instalar o maven na máquina. Para isso execute os comandos: 
+		$ sudo apt-get install maven
+		$ sudo apt-get install maven2
+	2) Vá para diretório do seu projeto e rode o comando:
+		$ mvn eclipse:eclipse
+	3) Abra o seu eclipse. Teremos que instalar um plugin maven no eclipse. No eclipse vá em:
+		Help > Eclipse Marketplace...
+	   E busque pelo m2e-apt. Instale o plugin.
+	4) Importe o projeto em seu eclipse. Para isso vá em:
+		File > Import... > Existing Projects into Workspace
+	5) Passe o diretório do seu projeto.
+
+-> Rodando o projeto localmente
+
+	1) No seu terminal vá para o diretório do seu projeto e rode o comando:
+		vraptor-console
+	2) Quando o vraptor-console tiver subido dê o comando run. Isso irá subir o jetty.
+	obs: toda vez que for necessário refazer o build do projeto não é necessário derrubar o 
+vraptor-console. Basta dar o comando run novamente.
+
+-> Baixando o Heroku
+
+	Para baixar o heroku na sua máquina rode o comando:
+		$ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+	Para criar sua conta basta acessar o site: https://id.heroku.com/signup
+
+-> Fazendo o deploy no heroku
+
+	1) Primeiramente será necessário criar um repositório git no seu projeto. Pelo terminal 
+execute os comandos:
+		$ git init .
+		$ git commit -am "initial commit"
+	2) Para colocar o seu projeto no heroku rode os comandos: 
+		$ heroku create <nome da aplicacao no heroku>
+		$ heroku plugins:install https://github.com/heroku/heroku-buildpacks
+		$ heroku buildpacks:set csokol/vraptor-buildpack -a <nome da aplicacao no heroku>
+		$ git push heroku master
+	3) Toda vez que for necessário fazer o deploy no heroku basta rodar o comando:
+		$ git push heroku master
+	4) Se você acessar o link: 
+		<nome da aplicacao no heroku>.heroku.com
+	você acessará sua aplicação no servidor.
+
+-> Projeto (provisório) Monitoria
+
+	Provisoriamente o projeto se encontra no repositório: 
+		https://github.com/lucaspalma/monitoria
+	Para rodar o código basta clonar o projeto na sua máquina. 
+	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario 
+labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a 
+passo deste tutorial:
+		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
+	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e 
+dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
+		localhost:8080
+		
+
+
+
+
+
+
+
+
+
