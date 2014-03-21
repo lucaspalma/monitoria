@@ -52,8 +52,7 @@ vraptor-console. Basta dar o comando run novamente.
 
 -> Fazendo o deploy no heroku
 
-	1) Primeiramente será necessário criar um repositório git no seu projeto. Pelo terminal 
-execute os comandos:
+	1) Primeiramente será necessário criar um repositório git no seu projeto. Pelo terminal execute os comandos:
 		$ git init .
 		$ git add .
 		$ git commit -m "initial commit"
@@ -71,7 +70,7 @@ execute os comandos:
 -> Configurando o Hibernate
 
 	Para configurar o hibernate no seu projeto, primeiramente teremos que colocar libs no maven.
-No nosso exemplo abaixo estamos configurando um hibernate com banco postgresql.
+	No nosso exemplo abaixo estamos configurando um hibernate com banco postgresql.
 	1) No seu eclipse abra o arquivo pom.xml. Depois das linhas:
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -94,9 +93,7 @@ No nosso exemplo abaixo estamos configurando um hibernate com banco postgresql.
 	     		<artifactId>vraptor-jpa</artifactId>
 	     		<version>1.0.1</version>
 		</dependency>
-	2) No pacote src/main/resources crie um folder chamado META-INF. Neste folder, crie um 
-arquivo xml chamado persistence.xml, em que faremos as configurações do banco de dados que será 
-usado. Por exemplo:
+	2) No pacote src/main/resources crie um folder chamado META-INF. Neste folder, crie um arquivo xml chamado persistence.xml, em que faremos as configurações do banco de dados que será usado. Por exemplo:
 		<?xml version="1.0" encoding="UTF-8"?>
 		<persistence xmlns="http://java.sun.com/xml/ns/persistence"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -106,13 +103,13 @@ usado. Por exemplo:
 			<persistence-unit name="default">
 				<properties>
 					<property name="javax.persistence.jdbc.driver" 
-					  value="org.postgresql.Driver" />
+						value="org.postgresql.Driver" />
 					<property name="javax.persistence.jdbc.url" 
-					  value="jdbc:postgresql://localhost/<nomde do banco>"/>
+						value="jdbc:postgresql://localhost/< nomde do banco >"/>
 					<property name="javax.persistence.jdbc.user" 
-					  value="<nome do usuario>" />
+						value="< nome do usuario >" />
 					<property name="javax.persistence.jdbc.password" 
-					  value="<senha do usuario>"/>
+						value="< senha do usuario >"/>
 		
 					<property name="hibernate.dialect" 
 						value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -123,18 +120,18 @@ usado. Por exemplo:
 			</persistence-unit>
 		</persistence>
 	3) Para rodar localmente bastaria criar o baco com os nomes que foram especificados no xml.
+	No caso do postgre, para criar um banco e usuario basta seguir o tutorial no site:
+ 		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
 
 -> Projeto (provisório) Monitoria
 
 	Provisoriamente o projeto se encontra no repositório: 
 		https://github.com/lucaspalma/monitoria
 	Para rodar o código basta clonar o projeto na sua máquina. 
-	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario 
-labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a 
+	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a 
 passo deste tutorial:
 		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
-	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e 
-dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
+	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
 		localhost:8080
 
 -> Links úteis
