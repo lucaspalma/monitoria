@@ -1,6 +1,6 @@
 -> Instalando o vraptor-console
 
-	1) Barxar o vraptor-console-0.7.0-SNAPSHOT.tar.gz no link: 
+	1) Baixe o vraptor-console-0.7.0-SNAPSHOT.tar.gz no link: 
 		http://code.google.com/p/vraptor-console/downloads/list
 	2) Extraia o arquivo para algum diretório na sua máquina, por exemplo: 
 		$ tar xzf vraptor-console-0.7.0-SNAPSHOT.tar.gz -C ~/programs
@@ -21,7 +21,8 @@
 
 -> Criando um projeto com vraptor-console
 
-	Para criar o seu projeto rode o comando: vraptor-console new com.mycompany.package appname
+	Para criar o seu projeto rode o comando: 
+		$ vraptor-console new com.< company >.< package > < appname >
 
 -> Importando o projeto no eclipse
 
@@ -36,7 +37,7 @@
 
 -> Rodando o projeto localmente
 
-	1) No seu terminal vá para o diretório do seu projeto e rode o comando:
+	1) No terminal, vá para o diretório do seu projeto e rode o comando:
 		vraptor-console
 	2) Quando o vraptor-console tiver subido dê o comando run. Isso irá subir o jetty.
 	obs: toda vez que for necessário refazer o build do projeto não é necessário derrubar o 
@@ -46,14 +47,16 @@ vraptor-console. Basta dar o comando run novamente.
 
 	Para baixar o heroku na sua máquina rode o comando:
 		$ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-	Para criar sua conta basta acessar o site: https://id.heroku.com/signup
+	Para criar sua conta basta acessar o site: 
+		https://id.heroku.com/signup
 
 -> Fazendo o deploy no heroku
 
 	1) Primeiramente será necessário criar um repositório git no seu projeto. Pelo terminal 
 execute os comandos:
 		$ git init .
-		$ git commit -am "initial commit"
+		$ git add .
+		$ git commit -m "initial commit"
 	2) Para colocar o seu projeto no heroku rode os comandos: 
 		$ heroku create <nome da aplicacao no heroku>
 		$ heroku plugins:install https://github.com/heroku/heroku-buildpacks
@@ -68,6 +71,7 @@ execute os comandos:
 -> Configurando o Hibernate
 
 	Para configurar o hibernate no seu projeto, primeiramente teremos que colocar libs no maven.
+No nosso exemplo abaixo estamos configurando um hibernate com banco postgresql.
 	1) No seu eclipse abra o arquivo pom.xml. Depois das linhas:
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -92,7 +96,7 @@ execute os comandos:
 		</dependency>
 	2) No pacote src/main/resources crie um folder chamado META-INF. Neste folder, crie um 
 arquivo xml chamado persistence.xml, em que faremos as configurações do banco de dados que será 
-usado. Por exemplo, se usarmos um banco de dados postgresql podemos colocar as seguites linhas:
+usado. Por exemplo:
 		<?xml version="1.0" encoding="UTF-8"?>
 		<persistence xmlns="http://java.sun.com/xml/ns/persistence"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -118,6 +122,7 @@ usado. Por exemplo, se usarmos um banco de dados postgresql podemos colocar as s
 				</properties>
 			</persistence-unit>
 		</persistence>
+	3) Para rodar localmente bastaria criar o baco com os nomes que foram especificados no xml.
 
 -> Projeto (provisório) Monitoria
 
@@ -131,7 +136,18 @@ passo deste tutorial:
 	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e 
 dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
 		localhost:8080
-		
+
+-> Links úteis
+
+	-vraptor-console:
+		https://github.com/caelum/vraptor-console
+	-libs do maven para o pom.xml:
+		http://search.maven.org/
+	-postgresql:
+		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
+	-heroku: 		
+		https://devcenter.heroku.com/categories/java		
+		https://devcenter.heroku.com/categories/database
 
 
 
