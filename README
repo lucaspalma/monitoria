@@ -142,14 +142,15 @@ vraptor-console. Basta dar o comando run novamente.
 	O projeto de exemplo tem como principais diretorios o:
 		- src/main/java/br/usp/ime/monitoria/monitoria: onde estão os arquivos .java, organizados em diretorios controller, dao e modelo. O controller e modelo fazem parte do padrão MVC, enquanto o dao são as classes que se comunicam com o banco.
 		- src/main/webapp/WEB-INF/jsp: onde estão as views do padrão MVC.
-	A comunicação entre as jsp's e as classes controller ocorrer a partir do nome do diretorio no src/main/webapp/WEB-INF/jsp e o nome do controller. Todos os métodos no controller, após o término de sua execução, redirecionam para uma jsp com o mesmo nome do método.
+	O response entre as jsp's e as classes controller ocorre a partir do nome do diretorio no src/main/webapp/WEB-INF/jsp e o nome do controller. Todos os métodos no controller, após o término de sua execução, redirecionam para uma jsp com o mesmo nome do método.
 	No nosso exemplo, temos o diretório home em src/main/webapp/WEB-INF/jsp que contém a home.jsp e cadastraProfessor.jsp. Na classe HomeController no src/main/java/br/usp/ime/monitoria/monitoria/controller temos os métodos home() e cadastraProfessor(). Assim após a execução do home() o usuário será redirecionado para a home.jsp. O mesmo ocorre com o cadastraProfessor() e o cadastraProfessor.jsp.
-
+	Já o request é feito a partir da action de um form na jsp e a url presente nas annottations @Get ou @Post nos métodos do controller que farão o response. No nosso exemplo, a home.jsp possui um form com a action "/cadastraProfessor" e o method "post". ao clicar no input de tipo submit o VRaptor irá procurar por algum método com a annotation @Post("/cadastraProfessor"), que no exemplo se encontra n HomeController.
 
 ->Annotations importantes do vraptor/hibernate
 
 	O Vraptor fornece algumas annotations importantes para dizer o que é cada classe java no padrão MVC.
-	As classes controller precisam ter a annotation @Resource, como pode ser visto na HomeController. Já as classes modelo devem ser marcadas com @Entity.
+	As classes controller precisam ter a annotation @Resource, como pode ser visto na HomeController. E os métodos dos controllers que vão ser chamados pelas jsps precisam ter um @Get ou @Post.
+	Já as classes modelo devem ser marcadas com @Entity.
 	Já as classes dao podem ser marcadas com o @Component, que garantem a injeção de dependências dessas classes. Assim podemos simplesmente receber objetos dessas classes nos construtores dos controllers que o vraptor se encarrega de criar o objeto e passar pro construtor.
 
 -> Links úteis
