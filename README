@@ -131,6 +131,10 @@ vraptor-console. Basta dar o comando run novamente.
 	Depois será necessário criar um banco postgresql, cujo nome do banco será monitoria, usuario labxp e senha labxp. Para saber como criar usuario (com a senha), e o banco basta seguir o passo a 
 passo deste tutorial:
 		http://www.cyberciti.biz/faq/howto-add-postgresql-user-account/
+	obs 1: O nome do usuario, senha e nome do banco devem ser os mesmos que você colocou no persistence.xml
+	obs 2: No "Step # 2: Becoming a superuser", se você não souber sua senha postgres, basta dar o comando:
+		$ sudo su - postgres
+	     Assim pode usar sua senha de usuário para logar como postgres.
 	Com o banco criado rode o comando mvn eclipse:eclipse, usar o comando o vraptor-console e dar o run. Se tudo estiver certo você conseguirá acessar localmente no:
 		localhost:8080
 
