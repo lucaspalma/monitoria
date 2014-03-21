@@ -5,14 +5,17 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.usp.ime.monitoria.monitoria.modelo.professor.Professor;
+import br.usp.ime.monitoria.monitoria.modelo.professor.ProfessorDao;
 
 @Resource
 public class HomeController {
 	
 	private final Result result;
+	private ProfessorDao professorDao;
 
-	public HomeController(Result result) {
+	public HomeController(Result result, ProfessorDao professorDao) {
 		this.result = result;
+		this.professorDao = professorDao;
 	}
 	
 	@Get("/")
@@ -23,7 +26,7 @@ public class HomeController {
 	@Post("/cadastraProfessor")
 	public void cadastraProfessor(Professor professor) {
 		//valida o professor
-		//salva no banco
+		professorDao.add(professor);
 		result.include("professor", professor);
 	}
 }
